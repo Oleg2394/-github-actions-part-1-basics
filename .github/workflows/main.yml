@@ -24,6 +24,12 @@ on:
 # Создаем задачи
 jobs:
 
+  linux_version:
+    runs-on: ubuntu-latest  
+    steps:
+    - name: Verion Linux
+      run: cat /etc/os-release
+      
 # Название первой задачи
   my_testing:
   

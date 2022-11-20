@@ -65,12 +65,28 @@ jobs:
     
     # Запускать после выполнения задачи my_testing
     needs: [my_testing]    
+    
+    # Создание локальных переменных
+    env:
+      VAR1 : "This is Job Level Variable1"
+      VAR2 : "This is Job Lebel Variable2"
+    
    # Шаги задачи
     steps:
    
    # Вывести на экран "Hello World from Deploy job"
     - name: Print Hello Message in Deploy
       run : echo "Hello World from Deploy job"
+      
+    - name: Print env vars
+      run : |
+        echo "Var1 = ${{ env.VAR1 }}"
+        echo "Var2 = ${{ env.VAR2 }}"
+        echo "Var3 = $LOCAL_VAR"
+        
+        # Создание переменной только для шагов не глобальный
+      env:
+        LOCAL_VAR: "This is Super local Environment variable"      
 
 # Deplyo pakcage name is DEPLOY_PACKAGE_NAME (Номер коммита)
     - name: Printing Deployment package
